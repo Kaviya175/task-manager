@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width initial-scale=1.0">
+    <title>Personal Task Manager</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>My Task Manager</h1>
+            <p>Organize your day, one task at a time.</p>
+        </header>
+        <section class="task-input-section">
+            <form id="taskForm">
+                <input type="text" id="taskInput" placeholder="Enter a new task..." maxlength="200" autocomplete="off"
+                    required>
+                <button type="submit" id="addTaskBtn">
+                    + Add Task
+                </button>
+            </form>
+        </section>
+        <section class="stats">
+            <div class="stat-card">
+                <h3 id="totalTasks">0</h3>
+                <p>Total Tasks</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="pendingTasks">0</h3>
+                <p>Pending</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="completedTasks">0</h3>
+                <p>Completed</p>
+            </div>
+        </section>
+        <section class="filter-section">
+            <h2>Your Tasks</h2>
+            <div class="filter-buttons">
+                <button type="button" class="filter-btn active" data-filter="all">
+                    All
+                </button>
+                <button type="button" class="filter-btn" data-filter="pending">
+                    Pending
+                </button>
+                <button type="button" class="filter-btn" data-filter="completed">
+                    Completed
+                </button>
+            </div>
+        </section>
+        <ul id="taskList" class="task-list"></ul>
+        <p id="emptyMessage" class="empty-message">
+            No tasks yet. Add your first task!
+        </p>
+    </div>
+</body>
+</html>

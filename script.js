@@ -6,13 +6,13 @@ const totalTasks = document.getElementById("totalTasks");
 const pendingTasks = document.getElementById("pendingTasks");
 const completedTasks = document.getElementById("completedTasks");
 const filterButtons = document.querySelectorAll(".filter-btn");
-
+const themeToggle = document.getElementById("themeToggle");
 let tasks = [];
 try {
     const savedTasks = localStorage.getItem("personalTasks");
     const parsedTasks = savedTasks ? JSON.parse(savedTasks) : [];
 
-    if (Array.isArray(parsedTasks)) {
+    if (Array.isArray(parsedTasks)){
         tasks = parsedTasks.filter(task =>
             task &&
             typeof task.id === "string" &&
@@ -40,6 +40,34 @@ function saveTasks() {
         console.error("Unable to save tasks:", error);
     }
 }
+// Dark Mode functionality
+
+function applyTheme(theme) {
+    if (theme === "dark") {
+        document.body.classList.add("dark-mode");
+        themeToggle.textContent = "☀️ Light Mode";
+        themeToggle.setAttribute("aria-pressed", "true");
+    } else {
+        document.body.classList.remove("dark-mode");
+        themeToggle.textContent = "🌙 Dark Mode";
+        themeToggle.setAttribute("aria-pressed", "false");
+    }
+}
+
+const savedTheme = localStorage.getItem("taskManagerTheme") || "light";
+
+applyTheme(savedTheme);
+
+themeToggle.addEventListener("click", function () {
+    const isDark = document.body.classList.contains("dark-mode");
+
+    const newTheme = isDark ? "light" : "dark";
+
+    applyTheme(newTheme);
+
+    localStorage.setItem("taskManagerTheme", newTheme);
+});
+
 function addTask(taskText) {
     const newTask = {
         id: generateId(),
